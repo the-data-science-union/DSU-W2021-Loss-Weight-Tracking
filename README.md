@@ -3,7 +3,7 @@
 This project aims to train a linear regression machine learning model that inputs a person’s quantitative and qualitative attributes and outputs one’s weight prediction. The attributes include but not limit to: height, initial weight, age, nationality, ethnicity, average daily exercise duration, exercise type and duration, average daily caloric intake, average nutrition distribution of daily diet, sleeping hours, sleeping schedule, meal schedule, exercise schedule, occupation, average daily stress level (0-5), hobbies, social activities. 
 
 ## Logo
-![logo](https://user-images.githubusercontent.com/76720013/105310857-23cd7980-5b72-11eb-8940-1643ccec64f5.jpg)
+<img src="./logo.jpg" width= "20" height = "20" >
 
 
 
