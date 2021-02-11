@@ -1,0 +1,111 @@
+---
+title: "week_5_assignment"
+author: "William Foote"
+date: "2/10/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+df <- read.csv("cleaned_dataset.csv")
+library(car) # For VIF
+library(leaps)# For AIC and BIC
+library(foreign)
+library(msm)
+```
+
+# Sort to training and testing
+
+```{r}
+set.seed(824)
+dt <- sort(sample(nrow(df), nrow(df) * .8, replace = FALSE)) # Sample randomly to training and test
+train <- df[dt, ]
+test <- df[-dt, ]
+```
+
+# Exploring 7-predictor model, look at all combinations, and which does regsubsets suggest?
+
+```{r}
+df_exh <- regsubsets(Calories ~ . - Id - ActivityDate, data = train, nvmax = 10,
+                        method = "exhaustive")
+
+summary(df_exh)$outmat[7, ] # Get row 7 to see the suggested 7-predictor model.
+```
+
+The exhaustive method looks at all combinations of all the variables, and can show which models have the highest r-squared for each combination of 1, 2, ..., 10 variables.
+
+The second line of code shows which 7-predictor model of all the combinations of predictors has the highest R^2.
+
+## Is 7-predictor the optimal number, though?
+
+```{r}
+bic_exh <- summary(df_exh)$bic
+p_exh <- 1:10
+n <- 894 # for 58 counties * 5 years
+aic_exh <- bic_exh - log(n) * (p_exh) + 2 * p_exh
+aic_exh <- bic_exh - log(n) * (p_exh) + 2 * p_exh
+par(mfrow = c(1, 2))
+plot(p_exh, bic_exh, col = "dodgerblue3", pch = 19, main = "Exhaustive method: BIC")
+plot(p_exh, aic_exh, col = "darkorange", pch = 19, main = "Exhaustive method: AIC")
+rbind("AIC" = aic_exh, "BIC" = bic_exh)
+min("AIC" = aic_exh)
+min("BIC" = bic_exh)
+```
+
+Around 7 variables, both AIC and BIC plateau in terms of continuing their decrease. The returns are diminishing past this point in my opinion (not much increase in R^2 for a much more complex model; tradeoff isn't worth it necessarily).
+
+# Making the models for the suggested 7-variable model with regsubsets output.
+
+```{r}
+m1 <- lm(Calories ~ TotalSteps + TotalDistance + VeryActiveDistance + ModeratelyActiveDistance + VeryActiveMinutes + FairlyActiveMinutes + SedentaryMinutes, data = train)
+summary(m1)
+c("MSE of m1: " = anova(m1)['Residuals', 'Mean Sq'])
+
+
+m2 <- lm(Calories ~ TotalSteps * TotalDistance * VeryActiveDistance * ModeratelyActiveDistance * VeryActiveMinutes * FairlyActiveMinutes * SedentaryMinutes, data = train) # Look at model with interactions now
+# summary(m2)
+c("MSE of m2: " = anova(m2)['Residuals', 'Mean Sq'])
+
+```
+
+There's a lot that goes on in the summary(m2), so you can remove the # to un-comment it, but in short, the R^2 goes up to 85.32%, and the MSE is 93, 674.81, as outputted. Both values are better, but not sure if it's worth the added terms (of which there are A LOT).
+
+## Looking at testing data now
+
+```{r}
+pred1 <- predict(m1, newdata = test)
+rmse <- sqrt(mean((pred1 - test$Calories)))
+c(RMSE = rmse, R2 = summary(m1)$r.squared)
+
+m3 <- lm(pred1 ~ test$Calories)
+
+plot(test$Calories, pred1, xlim = c(0, 5500), ylim = c(0, 5500), ylab = "Predicted Y",
+     xlab = "Actual Y", main = "TD x TS x VAD x MAD x VAM x FAM x SM",
+     pch = 19, cex = .7, col = "grey24")
+abline(a = 0, b = 1, col = "purple", lwd = 2)
+abline(m3, col = "goldenrod", lwd = 2)
+legend("topleft", legend = c("Ideal", "Y = 572.07 + .76X"), col = c("purple", "goldenrod"), lty = 1, lwd = 2)
+```
+
+Based on RMSE = 4.15, we can conclude that on an average predicted value will be off by 4.15 from the actual value.
+
+## Model Validity
+
+```{r}
+par(mfrow = c(2, 2))
+plot(m1, col = "seagreen3", pch = 19, cex = .50)
+```
+
+Linearity: Good, I think. There's a slight decreasing trend at the higher fitted-values, but this could just be because there are less points.
+
+Constant Variation: There isn't a super big strictly decreasing or increasing trend, but there shouldn't be any trend at all so this is potentially worrisome. There also doesn't appear to be a fan shape in the Residuals plot, which would be another form of evidence that the constant variance condition is violated.
+
+Normality: The points follow the Normal-QQ expected line, so this condition is satisfied.
+
+## VIF
+
+```{r}
+vif(m1)
+```
+
+These numbers are all quite high except 2. Values greater than 5 are problematic potentially.
