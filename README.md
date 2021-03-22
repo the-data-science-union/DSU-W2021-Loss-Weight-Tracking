@@ -19,6 +19,7 @@ Going further into the details, we can look at the diagnostic plot to quanitfy t
 <img src="./Visualizations/scale-location.PNG"><img src="./Visualizations/residuals_vs_leverage.PNG">
 
 Besides those, we also calculated the VIF scores to measure how correlated the predictors were. All of them except VeryActiveMinutes and SedentaryMinutes are very high and this is reflected on the correlation map as well. So this meant that despite our model's relatively high scores, it wasn't our most reliable model.
+
 ![VIF Scores](Visualizations/VIF.PNG)
 
 The reason why we went with a 7 predictor model was because it had the highest R^2 score. Will, one of the data analysts, conducted two tests: AIC and BIC. This is a test where we're trying to find the lowest AIC and BIC scores to determine the ideal number of predictors to include in the model. Both graphs gave similar results, showing the lowest AIC/BIC scores after 7 predictors. Expanding upon this, we decided on 7 instead of 8+ so as to avoid overfitting the model. 
