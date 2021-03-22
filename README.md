@@ -25,8 +25,7 @@ Besides those, we also calculated the Variance Inflation Factor (VIF) scores to 
 
 The reason why we went with a 7 predictor model was because it had the highest R^2 score. Will, one of the data analysts, conducted two tests: AIC and BIC. This is a test where we're trying to find the lowest AIC and BIC scores to determine the ideal number of predictors to include in the model. Both graphs gave similar results, showing the lowest AIC/BIC scores after 7 predictors. Expanding upon this, we decided on 7 instead of 8+ so as to avoid overfitting the model. 
 
-<img src="./AIC.PNG">
-<img src="./BIC.PNG">
+<img src="./Visualizations/AIC.png" width= "400" height = "300"><img src="./Visualizations/BIC.png" width= "400" height = "300">
 
 ## Contribution
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
