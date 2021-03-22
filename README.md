@@ -1,6 +1,9 @@
 # Weight Loss Tracking
 
-This project aims to train a linear regression machine learning model that inputs a person’s quantitative and qualitative attributes and outputs one’s weight prediction. The attributes include but not limit to: height, initial weight, age, nationality, ethnicity, average daily exercise duration, exercise type and duration, average daily caloric intake, average nutrition distribution of daily diet, sleeping hours, sleeping schedule, meal schedule, exercise schedule, occupation, average daily stress level (0-5), hobbies, social activities. 
+-Our primary goal aims to train a linear regression machine learning model which predicts the average daily calorie consumption based on an individual’s average daily activity information, such as daily walking steps, walking distance, very active minutes and so on. 
+-Our secondary goal aims to train an ensemble regression learning model given the same dataset to explore how we can combine multiple regression models to improve the accuracy and overall performance of prediction beyong linear regression. 
+-Lastly, we hope to create an interactive and engaging atmosphere for our members to share ideas, tell stories, practice ML skills, strengthen leadership, teamwork and communication skills.
+
 
 ## Logo
 <img src="./logo.jpg" width= "300" height = "300" >
