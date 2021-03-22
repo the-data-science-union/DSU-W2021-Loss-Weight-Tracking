@@ -11,6 +11,7 @@
 
 ## Analysis
 We built several models to test out which method was the best at capturing the relationship between specific activities and the number of calories burned. During the process, we found that our linear model with 7 predictors had the highest test R^2 of 0.74. Since the scale for each predictor is standardized, we can directly compare the coefficients. The two largest contributors are TotalDistance and TotalSteps which makes sense as they were highly correlated with the target Calories. In the graph, the line for the predicitons is fairly close to the 45 degree line which is what we hoped for.
+
 ![Real vs Predicted](Visualizations/real_vs_predicted.PNG)
 
 Going further into the details, we can look at the diagnostic plot to quanitfy the 7-predictor model's performance. In the Residuals vs Fitted graph, we can see that the red line curves near the end however this isn't a serious violation. Next in the Normal Q-Q figure, we expect to see a straight light and for the most part it is until the deviations near the tail. The 3rd plot, Scale-Location, is also supposed to be flat with equally spaced points, but data isn't perfect. Lastly, there's 2 points in the Residuals vs Leverage figure that could be bad leverage. However, when we tried building a model on data with the outliers removed, the R^2 value didn't improve much so we just left it.
