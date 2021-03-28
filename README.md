@@ -9,7 +9,11 @@
 ## Logo
 <img src="./logo.jpg" width= "300" height = "300" >
 
-## Analysis
+## Exploratory Data Analysis
+
+
+
+## Analysis of Linear Regression
 We built several models to test out which method was the best at capturing the relationship between specific activities and the number of calories burned. During the process, we found that our linear model with 7 predictors had the highest test R^2 of 0.74. Since the scale for each predictor is standardized, we can directly compare the coefficients. The two largest contributors are TotalDistance and TotalSteps which makes sense as they were highly correlated with the target Calories. In the graph, the line for the predicitons is fairly close to the 45 degree line which is what we hoped for.
 
 ![Real vs Predicted](Visualizations/real_vs_predicted.PNG)
@@ -27,9 +31,23 @@ The reason why we went with a 7 predictor model was because it had the highest R
 
 <img src="./Visualizations/AIC.png" width= "400" height = "300"><img src="./Visualizations/BIC.png" width= "400" height = "300">
 
-## Contribution
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-Please make sure to update tests as appropriate.
+## Analysis of Emsemble Regression 
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+
+
+
+## Summary 
+
+1. We built two linear regression models to predict the average daily calorie consumption. In terms of statistical significance and validity, the second model runs into less issues of multicollinearity measured by variance inflation factor (VIF). However, the second model has less practical significance and it is hard to use this model to guide a prospective fitness-watch wearer on what small goals to achieve in terms of minutes active and steps walked. On the contrary, the first model runs into issues of multicollinearity but knowing that total distance and total steps are the highest contributors to our outcome variable is something that can be tracked by most watches and can be easily analyzed.
+
+2. The third model also explores the ensemble regression, a model that combines different kinds of models together, including four linear models - lasso, lasso lars, elastic net and ridge, along with two tree based models - XGBoost and GBoost. This model contains a RMSE of 0.24 and a R-squared of 0.53, which is high enough given the fact that multiple models were incorporated. 
+
+## Applications
+
+To further improve the accuracy of our model, my group would like to explore other non-linear regression models as well as to connect with APIs to access large, more robust database. Our project can contribute meaningful insight for research studies on the effectiveness of calorie consumption in weight loss, Calorie Tracking Apps like Myfitnesspal, and Fitness & Nutrition programs. Lastly, we hope to enhance the awareness of taking care of our physical and mental health by cultivating a healthy and balanced lifestyle. 
+
+
+
+
+
+
