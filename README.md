@@ -51,7 +51,14 @@ The reason why we went with a 7 predictor model was because it had the highest R
 To further improve the accuracy of our model, my group would like to explore other non-linear regression models as well as to connect with APIs to access large, more robust database. Our project can contribute meaningful insight for research studies on the effectiveness of calorie consumption in weight loss, Calorie Tracking Apps like Myfitnesspal, and Fitness & Nutrition programs. Lastly, we hope to enhance the awareness of taking care of our physical and mental health by cultivating a healthy and balanced lifestyle. 
 
 
+## Contributions
+Coco Wu
+Aimee Xu
+Ananya Achan
+Belle Lerdworatawee
+William Foote 
 
+UCLA DATA SCIENCE UNION 
 
 
 
