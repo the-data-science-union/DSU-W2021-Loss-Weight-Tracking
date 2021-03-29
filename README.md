@@ -11,7 +11,11 @@
 
 ## Exploratory Data Analysis
 
+To determine how many calories would be burned based on different types of physical exertion, we found a detailed exercise log that displayed categories such as the type, intensity, duration (minutes), and distance (km) of the exercise. Although this dataset provided many variables, we ended up focusing our analysis only on those that had an effect on the amount of calories burned. This made the data much more accessible and easier to measure.
 
+After scraping the data, we decided to test for multicollinearity by creating a heatmap. Variables with high multicollinearity factors were not used together when creating our model. Then, using Excel and Python (+ Pandas Packages), we finished our exploratory data analysis by cleaning the data. With the data cleaned, we were ready to start building our model. Below is our correlation heatmap. As you can see, some variables such as "Total Steps'' and "Total Distance" had a correlation of 1, so when we built our model, we were careful to keep our Variable Inflation Factor low.
+
+<img width="431" alt="Screen Shot 2021-03-28 at 7 59 35 PM" src="https://user-images.githubusercontent.com/77707861/112781665-216b1e00-9000-11eb-96dd-954855476f33.png">
 
 ## Analysis of Linear Regression
 We built several models to test out which method was the best at capturing the relationship between specific activities and the number of calories burned. During the process, we found that our linear model with 7 predictors had the highest test R^2 of 0.74. Since the scale for each predictor is standardized, we can directly compare the coefficients. The two largest contributors are TotalDistance and TotalSteps which makes sense as they were highly correlated with the target Calories. In the graph, the line for the predicitons is fairly close to the 45 degree line which is what we hoped for.
