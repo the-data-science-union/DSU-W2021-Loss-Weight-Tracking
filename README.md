@@ -52,11 +52,11 @@ To further improve the accuracy of our model, my group would like to explore oth
 
 
 ## Contributions
-Coco Wu
-Aimee Xu
-Ananya Achan
-Belle Lerdworatawee
-William Foote 
+- Coco Wu
+- Aimee Xu
+- Ananya Achan
+- Belle Lerdworatawee
+- William Foote 
 
 UCLA DATA SCIENCE UNION 
 
